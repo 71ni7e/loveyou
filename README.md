@@ -15,11 +15,9 @@ A simple MAC changing script made in python.
 **Step 2. Downloading**
 
   You can do this either through curl or git clone, either way works.
-  git clone example: ``git clone https://github.com/71ni7e/loveyou/``
-  
-                     ``cd loveyou/``
-
-
+  git clone example: ``git clone https://github.com/71ni7e/loveyou/`` & ``cd loveyou``
+                    
+                    
 **Step 3. Running the script**
 
   ``python loveyou.py [MAC address you want to spoof] [Network interface]``
