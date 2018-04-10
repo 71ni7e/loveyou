@@ -16,6 +16,7 @@ A simple MAC changing script made in python.
 
   You can do this either through curl or git clone, either way works.
   git clone example: ``git clone https://github.com/71ni7e/loveyou/``
+  
                      ``cd loveyou/``
 
 
