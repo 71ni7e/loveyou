@@ -5,7 +5,6 @@ import click #working on getting rid of this one, soon^tm
 
 
 def firstCheck():
-    #Check for the arguments to be present, otherwise output error and sys.exit()
     if len(sys.argv) < 2 and len(sys.argv) < 3:
         print("No arguments given, correct syntax: ./loveyou.py [New MAC] [Interface]")
         sys.exit()
@@ -28,8 +27,8 @@ def readStateZero():
     mainVal = subprocess.Popen (command, stdout=subprocess.PIPE, shell=True)
     mainVal.wait()
     stdOutIn = mainVal.communicate()
-    
-    #Do some string manipulation so we can end up with the correct answer
+
+    #Do some string manipulation so we can end up with the correctly formatted answer
     currentMAC = stdOutIn[:1]
     currentMAC2 = str(currentMAC)
     global currentMAC3
@@ -43,7 +42,7 @@ def readStateZero():
 def secondCheck():
     #"Force" the user to check his input so he doesn't screw up.
     if click.confirm('Is ' + sys.argv[1] + ' the correct new mac addr?', default=True) and click.confirm('Is ' + sys.argv[2] + ' the correct interface?', default=True):
-        print('yay')
+        print('Got answer [Y]es, going forward.')
         changeAddr()
     else:
             sys.exit()
@@ -52,12 +51,12 @@ def secondCheck():
 def changeAddr():
     #Let the user know what is happening
     print('Changing MAC address from ' + currentMAC3 + ' to ' + sys.argv[1] + ' on interface ' + sys.argv[2])
-    
+
     #Define command sequence
     command1 = ('ifconfig ' + sys.argv[2] + ' down')
     command2 = ('ifconfig ' + sys.argv[2] + ' hw ether ' + sys.argv[1])
     command3 = ('ifconfig ' + sys.argv[2] + ' up')
-    
+
     #Run the command, notice that we run command3 two times as a placeholder since it wouldn't
     #work all the time, still working on that.
     returnValue = subprocess.Popen(command1, shell=True)
