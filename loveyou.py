@@ -37,6 +37,17 @@ def readStateZero():
     secondCheck()
     return
 
+def readStateTwo():
+    command = "awk 'NR==1' /sys/class/net/*/address"
+    mainVal = subprocess.Popen (command, stdout=subprocess.PIPE, shell=True)
+    mainVal.wait()
+    stdOutIn = mainVal.communicate()
+    
+    currentMAC = stdOutIn[:1]
+    currentMAC2 = str(currentMAC)
+    currentMAC3 = currentMAC2[3:20]
+    print('New Address: ' + currentMAC3)
+    return
 
 
 def secondCheck():
@@ -67,6 +78,6 @@ def changeAddr():
     returnValue.wait()
     returnValue4=subprocess.Popen(command3, shell=True)
     returnValue.wait()
-    return
+    readStateTwo()
 
 firstCheck();
